@@ -206,10 +206,13 @@ CRITICAL REQUIREMENTS:
 1. PARENTS: Use the two provided images as the parents. Keep their faces, features, and characteristics exactly as they are.
 2. PRESERVE RACE AND ETHNICITY: Maintain the exact same racial and ethnic characteristics for all family members. Children should inherit appropriate features from both parents.
 3. CHILDREN GENERATION: Create ${numberOfChildren} realistic children with ages: ${ageDescriptions}.
-4. CHILDREN FEATURES: Each child should show clear resemblance to both parents:
-   - Mix facial features from both parents
-   - Inherit appropriate skin tone and hair characteristics
+4. CHILDREN FEATURES: Each child should show clear resemblance to both parents with realistic genetic inheritance:
+   - Mix facial features from both parents in random combinations (like real genetics)
+   - Some children may resemble one parent more than the other (natural variation)
+   - Each child should inherit different combinations of features (eyes from one parent, nose from another, etc.)
+   - Inherit appropriate skin tone and hair characteristics with natural variation
    - Show family resemblance while being unique individuals
+   - RESEMBLANCE MUST ALWAYS BE VISIBLE - every child must clearly look related to both parents
 5. RANDOM GENDER ASSIGNMENT: Randomly assign genders to the children (mix of boys and girls).
 6. FAMILY POSING: Arrange the family in a natural, loving pose:
    - Parents can be standing or sitting
@@ -241,36 +244,24 @@ FAMILY SPECIFICATIONS:
 - Parents: 2 adults (from provided images)
 - Children: ${numberOfChildren} children (ages: ${childrenAges.join(', ')})
 - Gender distribution: Random mix of boys and girls
-- Family resemblance: Clear inheritance from both parents
+- Family resemblance: Clear inheritance from both parents with realistic genetic variation
 - Setting: Professional family photography environment
 - Quality: Ultra-high resolution, photorealistic
 
 The result should be a beautiful, professional family portrait showing the parents with their children, all looking like a real family with clear genetic resemblance and natural interactions.`;
   }
 
-  /**
-   * Calculate children ages based on parameters
-   * @param {number} numberOfChildren - Number of children
-   * @param {number} ageGap - Age gap between children
-   * @param {number} youngestAge - Age of youngest child
-   * @returns {Array} - Array of children ages (oldest to youngest)
-   */
+
   calculateChildrenAges(numberOfChildren, ageGap, youngestAge) {
     const ages = [];
     for (let i = 0; i < numberOfChildren; i++) {
-      // Calculate age: youngest + (index * ageGap)
-      // This ensures proper age progression
+    
       ages.push(youngestAge + (i * ageGap));
     }
-    // Return ages from oldest to youngest for display
     return ages.sort((a, b) => b - a);
   }
 
-  /**
-   * Extract generated image from Gemini response
-   * @param {Object} response - Gemini API response
-   * @returns {Buffer|null} - Generated image buffer or null
-   */
+
   extractGeneratedImage(response) {
     try {
       if (
