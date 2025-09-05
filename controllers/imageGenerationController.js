@@ -67,7 +67,6 @@ class ImageGenerationController {
         `Processing image: ${file.originalname} (${file.size} bytes)`
       );
 
-      // Extract quality options from request body or query params
       const qualityOptions = {
         maxWidth: parseInt(req.body.maxWidth) || parseInt(req.query.maxWidth) || 2048,
         maxHeight: parseInt(req.body.maxHeight) || parseInt(req.query.maxHeight) || 2048,
@@ -181,12 +180,10 @@ class ImageGenerationController {
   }
 
   validateImageFile(file) {
-    // Check if file has content
     if (!file.buffer || file.buffer.length === 0) {
       return "Uploaded file is empty";
     }
 
-    // Check file type
     const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
     if (!allowedTypes.includes(file.mimetype)) {
       return "Invalid file type. Only JPEG, PNG, and WebP images are allowed";

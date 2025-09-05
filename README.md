@@ -65,6 +65,3 @@ Generate a family portrait with children.
 - **Family Portraits**: Generate professional family photos
 - **Social Sharing**: Create family images for social media
 - **Memory Creation**: Generate family photos for keepsakes
-
-
-##  Acknowledgments

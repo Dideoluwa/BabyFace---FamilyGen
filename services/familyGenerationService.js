@@ -16,15 +16,7 @@ class FamilyGenerationService {
     }
   }
 
-  /**
-   * Generate family picture with children
-   * @param {Buffer} parent1Buffer - First parent image buffer
-   * @param {Buffer} parent2Buffer - Second parent image buffer
-   * @param {string} parent1Filename - First parent filename
-   * @param {string} parent2Filename - Second parent filename
-   * @param {Object} options - Family generation options
-   * @returns {Promise<Object>} - Generated family image data and metadata
-   */
+
   async generateFamilyPicture(parent1Buffer, parent2Buffer, parent1Filename, parent2Filename, options = {}) {
     try {
       const {
@@ -135,12 +127,7 @@ class FamilyGenerationService {
     }
   }
 
-  /**
-   * Process input image for optimal results
-   * @param {Buffer} imageBuffer - Input image buffer
-   * @param {Object} options - Processing options
-   * @returns {Promise<Buffer>} - Processed image buffer
-   */
+
   async processInputImage(imageBuffer, options = {}) {
     try {
       const {
@@ -287,12 +274,6 @@ The result should be a beautiful, professional family portrait showing the paren
     }
   }
 
-  /**
-   * Generate output filename for family image
-   * @param {string} parent1Filename - First parent filename
-   * @param {string} parent2Filename - Second parent filename
-   * @returns {string} - Generated filename
-   */
   generateFamilyFilename(parent1Filename, parent2Filename) {
     const timestamp = Date.now();
     const randomId = Math.random().toString(36).substring(2, 8);
@@ -302,10 +283,7 @@ The result should be a beautiful, professional family portrait showing the paren
     return `family-${parent1Name}-${parent2Name}-${timestamp}-${randomId}.${extension}`;
   }
 
-  /**
-   * Clean up old files (optional utility method)
-   * @param {number} maxAgeHours - Maximum age in hours
-   */
+
   async cleanupOldFiles(maxAgeHours = 24) {
     try {
       const files = await fs.promises.readdir(this.uploadDir);

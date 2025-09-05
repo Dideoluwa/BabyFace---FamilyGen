@@ -9,7 +9,6 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 2004;
 
-// Security middleware
 app.use(helmet());
 app.use(
   cors({
@@ -20,27 +19,21 @@ app.use(
   })
 );
 
-// Rate limiting
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000, 
+  max: 100,
   message: "Too many requests from this IP, please try again later.",
 });
 app.use(limiter);
 
-// Compression middleware
 app.use(compression());
 
-// Logging middleware
 app.use(morgan("combined"));
 
-// Body parsing middleware
 app.use(express.urlencoded({ extended: true }));
 
-// Static files
 app.use(express.static("public"));
 
-// Routes
 app.get("/", (req, res) => {
   res.json({
     message: "Welcome to the Young Parent API",
@@ -57,10 +50,8 @@ app.get("/health", (req, res) => {
   });
 });
 
-// API routes
 app.use("/api", require("./routes"));
 
-// 404 handler
 app.use("*", (req, res) => {
   res.status(404).json({
     error: "Route not found",
@@ -68,7 +59,6 @@ app.use("*", (req, res) => {
   });
 });
 
-// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
 
@@ -81,11 +71,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
-  console.log(`Health check: http://localhost:${PORT}/health`);
 });
 
 module.exports = app;
