@@ -75,7 +75,6 @@ class ImageGenerationController {
         enhanceQuality: req.body.enhanceQuality !== 'false' && req.query.enhanceQuality !== 'false'
       };
 
-      console.log('Quality options:', qualityOptions);
 
       const result = await this.imageService.generateBabyFaceImage(
         file.buffer,
@@ -87,10 +86,8 @@ class ImageGenerationController {
         success: true,
         message: "Image transformed successfully",
         data: {
-          originalFilename: result.originalFilename,
-          generatedFilename: result.generatedFilename,
-          downloadUrl: `/api/images/download/${result.generatedFilename}`,
-          metadata: result.metadata,
+
+          base64Data: result.base64Data,
           qualitySettings: qualityOptions,
         },
       });
