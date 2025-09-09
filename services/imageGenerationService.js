@@ -53,7 +53,7 @@ class ImageGenerationService {
       // const outputFilename = this.generateOutputFilename(filename);
       // const outputPath = path.join(this.uploadDir, outputFilename);
 
-      // await fs.promises.writeFile(outputPath, generatedImageData);
+      // await fs.promises. writeFile(outputPath, generatedImageData);
 
       const result = {
         success: true,

@@ -86,7 +86,6 @@ class ImageGenerationController {
         success: true,
         message: "Image transformed successfully",
         data: {
-
           base64Data: result.base64Data,
           qualitySettings: qualityOptions,
         },
