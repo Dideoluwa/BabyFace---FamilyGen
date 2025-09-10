@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const compression = require("compression");
 const rateLimit = require("express-rate-limit");
 require("dotenv").config();
+require('./cron-service')
 
 const app = express();
 const PORT = process.env.PORT || 2004;
